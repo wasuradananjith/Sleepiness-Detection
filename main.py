@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 #import threading
+import winsound
 
 try:
     import winsound
@@ -42,6 +43,9 @@ while(True):
           iters = 0
           if count == 0:
             print ("Drowsiness Detected!!!")
+            frequency = 2500  # Set Frequency To 2500 Hertz
+            duration = 1000  # Set Duration To 1000 ms == 1 second
+            winsound.Beep(frequency, duration)
             #thread.start_new_thread(beep,())
           count = 0
         for (ex,ey,ew,eh) in eyes:
