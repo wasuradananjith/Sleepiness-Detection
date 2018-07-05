@@ -1,6 +1,5 @@
 import numpy as np
 import cv2
-#import threading
 import winsound
 
 try:
@@ -18,8 +17,9 @@ face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 
 def beep():
-  for i in range(4):
-    winsound.Beep(1500, 250)
+  frequency = 2500  # Set Frequency To 2500 Hertz
+  duration = 1000  # Set Duration To 1000 ms == 1 second
+  winsound.Beep(frequency, duration)
 
 cam = cv2.VideoCapture(0)
 count = 0                
@@ -43,10 +43,7 @@ while(True):
           iters = 0
           if count == 0:
             print ("Drowsiness Detected!!!")
-            frequency = 2500  # Set Frequency To 2500 Hertz
-            duration = 1000  # Set Duration To 1000 ms == 1 second
-            winsound.Beep(frequency, duration)
-            #thread.start_new_thread(beep,())
+            beep();
           count = 0
         for (ex,ey,ew,eh) in eyes:
         	cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh), (0,255,0),2)
